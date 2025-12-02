@@ -1,26 +1,46 @@
+import Image from "next/image";
 import FloatingHearts from "./components/FloatingHearts";
-import LoveLetterReveal from "./components/LoveLetterReveal";
+import LoveLetter from "./components/LoveLetter";
 import MasonryGallery from "./components/MasonryGallery";
 import { getDriveImages } from "./lib/drive";
+import { getLetters } from "./lib/getLetters";
+import styles from "./styles/page.module.css";
 
 export default async function Home() {
-  const images = await getDriveImages();
+  const { banner, gallery } = await getDriveImages();
+
+  // PDF letters from public folder
+  const letters = getLetters();
 
   return (
-    <main
-      style={{
-        padding: "2rem",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <main className={styles.mainContainer}>
+      {/* Banner */}
+      {banner && (
+        <div className={styles.bannerWrapper}>
+          <Image
+            src={banner.url}
+            alt="Birthday Banner"
+            width={1200}
+            height={400}
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "contain",
+              borderRadius: "1rem",
+              display: "block",
+            }}
+          />
+        </div>
+      )}
+
+      {/* Floating Hearts */}
       <FloatingHearts />
-      <h1 style={{ fontSize: "3rem", color: "#ff6b8a", marginBottom: "1rem" }}>
-        Happy Birthday Avani ❤️
-      </h1>
-      <LoveLetterReveal />
-      <MasonryGallery images={images} />
+
+      {/* Love Letter Envelope */}
+      <LoveLetter letters={letters} />
+
+      {/* Masonry Gallery */}
+      <MasonryGallery images={gallery} />
     </main>
   );
 }

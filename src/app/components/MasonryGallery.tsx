@@ -2,57 +2,66 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import styles from "../styles/gallery.module.css";
 import type { DriveImage } from "../types/drive";
-import Lightbox from "./Lightbox";
 
 interface Props {
   images: DriveImage[];
 }
 
 export default function MasonryGallery({ images }: Props) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const breakpointCols = { default: 3, 1100: 2, 700: 1 };
+  const [shuffled, setShuffled] = useState<DriveImage[]>(images);
+
+  // Shuffle every 1 minute
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShuffled((prev) => [...prev].sort(() => Math.random() - 0.5));
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const breakpointCols = {
+    default: 6,
+    1300: 5,
+    1000: 4,
+    700: 3,
+    500: 2,
+    400: 1,
+  };
 
   return (
-    <>
-      <Masonry
-        breakpointCols={breakpointCols}
-        className={styles.masonryGrid}
-        columnClassName={styles.masonryColumn}
-      >
-        {images.map((img, i) => (
-          <motion.div
-            key={img.id}
-            className={styles.imageCard}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            onClick={() => setOpenIndex(i)}
-          >
-            <Image
-              src={img.thumb}
-              alt={img.name ?? "Image"}
-              width={500}
-              height={600}
-              style={{
-                width: "100%",
-                height: "auto",
-                borderRadius: "var(--border-radius)",
-              }}
-            />
-          </motion.div>
-        ))}
-      </Masonry>
-      {openIndex !== null && (
-        <Lightbox
-          images={images}
-          startIndex={openIndex}
-          onClose={() => setOpenIndex(null)}
-        />
-      )}
-    </>
+    <Masonry
+      breakpointCols={breakpointCols}
+      className={styles.masonryGrid}
+      columnClassName={styles.masonryColumn}
+    >
+      {shuffled.map((img) => (
+        <motion.div
+          key={img.id}
+          className={styles.imageCard}
+          whileHover={{
+            scale: [1, 1.06, 1],
+            transition: { duration: 0.8, repeat: Infinity },
+          }}
+          animate={{ scale: 1 }}
+        >
+          <Image
+            src={img.thumb}
+            alt={img.name ?? "Gallery Image"}
+            width={200}
+            height={300}
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: "16px",
+              display: "block",
+            }}
+          />
+        </motion.div>
+      ))}
+    </Masonry>
   );
 }

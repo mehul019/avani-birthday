@@ -1,26 +1,25 @@
 .masonryGrid {
   display: flex;
-  margin-left: -1rem;
-  width: auto;
+  width: 100%;
+  margin-left: -20px; /* compensate for gap */
 }
 
 .masonryColumn {
-  padding-left: 1rem;
+  padding-left: 20px;
   background-clip: padding-box;
 }
 
 .imageCard {
-  margin-bottom: 1rem;
-  border-radius: var(--border-radius);
+  margin-bottom: 20px; /* vertical gap */
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 12px var(--shadow-color);
   cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
   transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* smooth return to original */
 }
 
 .imageCard:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 16px var(--shadow-color);
+  box-shadow: 0 0 12px rgba(255, 107, 138, 0.35);
 }
