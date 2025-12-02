@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.revealBtn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  background: var(--primary-pink);
+  color: white;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition:
+    transform 0.2s,
+    background 0.3s;
+}
+
+.revealBtn:hover {
+  transform: scale(1.05);
+  background: var(--secondary-pink);
+}
+
+.letter {
+  margin-top: 1.5rem;
+  padding: 2rem;
+  max-width: 600px;
+  background: var(--accent-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 20px var(--shadow-color);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--foreground);
+  white-space: pre-wrap;
+}

@@ -1,0 +1,26 @@
+.masonryGrid {
+  display: flex;
+  margin-left: -1rem;
+  width: auto;
+}
+
+.masonryColumn {
+  padding-left: 1rem;
+  background-clip: padding-box;
+}
+
+.imageCard {
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  cursor: pointer;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.imageCard:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px var(--shadow-color);
+}
