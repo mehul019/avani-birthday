@@ -1,26 +1,15 @@
 "use client";
 
-import type { JSX } from "react";
-import { useEffect } from "react";
+import { useState } from "react";
 import styles from "../styles/letterModal.module.css";
 
 interface LetterModalProps {
-  letters: string[];
   onClose: () => void;
+  letters: string[];
 }
 
-export default function LetterModal({
-  letters,
-  onClose,
-}: LetterModalProps): JSX.Element {
-  // Close modal on ESC key
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [onClose]);
+export default function LetterModal({ onClose, letters }: LetterModalProps) {
+  const [activePdf, setActivePdf] = useState<string | null>(null);
 
   return (
     <div
@@ -30,50 +19,61 @@ export default function LetterModal({
       aria-label="Love Letters"
       onClick={onClose}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClose();
-        }
+        if (e.key === "Escape") onClose();
       }}
     >
-      {/* Close button */}
-      <button
-        type="button"
-        className={styles.closeButton}
-        onClick={onClose}
-        aria-label="Close"
-      >
-        ✕
-      </button>
-
       <div
         className={styles.modalContent}
         role="dialog"
         onClick={(e) => e.stopPropagation()}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            e.preventDefault();
-            onClose();
-          }
-        }}
+        onKeyDown={(e) => e.stopPropagation()}
       >
-        {letters.map((letter) => (
-          <button
-            key={letter}
-            type="button"
-            className={styles.letterPreview}
-            onClick={() => window.open(letter, "_blank")}
-          >
-            <object
-              data={letter}
-              type="application/pdf"
-              width="100%"
-              height="100%"
+        <button
+          className={styles.closeButton}
+          onClick={onClose}
+          aria-label="Close modal"
+          type="button"
+        >
+          ×
+        </button>
+
+        <div className={styles.letterGrid}>
+          {letters.map((pdf) => (
+            <div
+              key={pdf}
+              className={styles.letterCard}
+              role="dialog"
+              onClick={() => setActivePdf(pdf)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActivePdf(pdf);
+                }
+              }}
             >
-              PDF preview not available
-            </object>
-          </button>
-        ))}
+              {/* PDF preview using <iframe> */}
+              <iframe src={pdf} title={pdf} className={styles.pdfPreview} />
+            </div>
+          ))}
+        </div>
+
+        {activePdf && (
+          <div className={styles.pdfModal}>
+            <button
+              className={styles.closeButton}
+              onClick={() => setActivePdf(null)}
+              aria-label="Close PDF"
+              type="button"
+            >
+              ×
+            </button>
+            <iframe
+              title={activePdf}
+              src={activePdf}
+              className={styles.fullPdf}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
