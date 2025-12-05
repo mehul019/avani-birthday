@@ -2,16 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import type { JSX } from "react";
 import { useState } from "react";
 import styles from "../styles/loveLetter.module.css";
-import LetterModal from "./LetterModal";
+import Letter from "./Letter";
 
-interface LoveLetterProps {
-  letters: string[];
-}
-
-export default function LoveLetter({ letters }: LoveLetterProps): JSX.Element {
+export default function LoveLetter() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -19,7 +14,7 @@ export default function LoveLetter({ letters }: LoveLetterProps): JSX.Element {
       <motion.button
         type="button"
         className={styles.loveLetterWrapper}
-        animate={{ rotate: [0, 5, -5, 5, -5, 0] }} // subtle shaking
+        animate={{ rotate: [0, 5, -5, 5, -5, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         onClick={() => setIsOpen(true)}
       >
@@ -33,9 +28,7 @@ export default function LoveLetter({ letters }: LoveLetterProps): JSX.Element {
         />
       </motion.button>
 
-      {isOpen && (
-        <LetterModal letters={letters} onClose={() => setIsOpen(false)} />
-      )}
+      {isOpen && <Letter onClose={() => setIsOpen(false)} />}
     </>
   );
 }

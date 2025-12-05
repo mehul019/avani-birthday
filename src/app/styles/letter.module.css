@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Paper container */
+.paper {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  min-width: 400px;
+  height: 480px;
+  margin: 0 auto;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.paper:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  background: radial-gradient(#575450 6px, transparent 7px) repeat-y;
+  background-size: 30px 30px;
+  border-right: 3px solid #d44147;
+  box-sizing: border-box;
+}
+
+/* Paper content area with lines */
+.paperContent {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 30px;
+  left: 60px;
+  background: linear-gradient(transparent, transparent 28px, #91d1d3 28px);
+  background-size: 30px 30px;
+  overflow-y: auto;
+  padding: 0 10px;
+}
+
+/* View-only text (like textarea but read-only) */
+.textContent {
+  margin: 0;
+  font-family: "Caveat", "Monaco", monospace; /* changed to Caveat */
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  color: mediumblue;
+  white-space: pre-wrap; /* preserve line breaks */
+}
+
+/* Close button */
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: #ff6b81;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.closeBtn:hover {
+  background: #ff4b61;
+}

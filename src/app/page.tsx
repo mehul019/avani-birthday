@@ -3,14 +3,10 @@ import FloatingHearts from "./components/FloatingHearts";
 import LoveLetter from "./components/LoveLetter";
 import MasonryGallery from "./components/MasonryGallery";
 import { getDriveImages } from "./lib/drive";
-import { getLetters } from "./lib/getLetters";
 import styles from "./styles/page.module.css";
 
 export default async function Home() {
   const { banner, gallery } = await getDriveImages();
-
-  // PDF letters from public folder
-  const letters = getLetters();
 
   return (
     <main className={styles.mainContainer}>
@@ -37,7 +33,7 @@ export default async function Home() {
       <FloatingHearts />
 
       {/* Love Letter Envelope */}
-      <LoveLetter letters={letters} />
+      <LoveLetter />
 
       {/* Masonry Gallery */}
       <MasonryGallery images={gallery} />
