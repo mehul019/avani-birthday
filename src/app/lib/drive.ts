@@ -40,7 +40,14 @@ export async function getDriveImages(): Promise<DriveImagesResult> {
   }));
 
   const banner = images.find((img) => /banner/i.test(img.name));
-  const gallery = images.filter((img) => img !== banner);
+  const gallery = (() => {
+    const arr = images.filter((img) => img !== banner);
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  })();
 
   return { banner, gallery };
 }
