@@ -12,7 +12,7 @@ export default function Letter({ onClose }: LetterProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const CORRECT_PASSWORD = "1234";
+  const CORRECT_PASSWORD = "sunflower";
 
   const letter = [
     `Maru baby.. maru pyaaru su beautiful SUNFLOWER.. 🌻💋❤️`,
