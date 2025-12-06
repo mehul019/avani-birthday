@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Banner from "./components/Banner";
 import FloatingHearts from "./components/FloatingHearts";
 import LoveLetter from "./components/LoveLetter";
 import MasonryGallery from "./components/MasonryGallery";
@@ -11,32 +11,16 @@ export default async function Home() {
   return (
     <main className={styles.mainContainer}>
       {/* Banner */}
-      {banner && (
-        <div className={styles.bannerWrapper}>
-          <Image
-            src={banner.url}
-            alt="Birthday Banner"
-            width={1200}
-            height={400}
-            style={{
-              width: "100%",
-              height: "auto",
-              objectFit: "contain",
-              borderRadius: "1rem",
-              display: "block",
-            }}
-          />
-        </div>
-      )}
+      {banner && <Banner url={banner.url} alt="Birthday Banner" />}
 
       {/* Floating Hearts */}
       <FloatingHearts />
 
-      {/* Love Letter Envelope */}
+      {/* Love Letter */}
       <LoveLetter />
 
       {/* Masonry Gallery */}
-      <MasonryGallery images={gallery} />
+      <MasonryGallery images={gallery ?? []} />
     </main>
   );
 }

@@ -17,11 +17,12 @@ export default function Banner({ url, alt = "Banner Image" }: BannerProps) {
         width={1200}
         height={400}
         style={{
-          objectFit: "fill",
-          borderRadius: "24px",
-          boxShadow: "0 8px 20px rgba(255,107,138,0.6)",
           width: "100%",
           height: "auto",
+          objectFit: "contain",
+          display: "block",
+          borderRadius: "1rem",
+          boxShadow: "0 0 10px rgba(255,107,138,0.35)",
         }}
         priority
       />

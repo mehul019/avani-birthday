@@ -4,17 +4,3 @@
   position: relative;
   text-align: center;
 }
-
-.bannerWrapper {
-  display: inline-block;
-  margin: 0 0 2rem 0;
-  border-radius: 1rem;
-  overflow: hidden;
-
-  /* Pink glow shadow all around */
-  box-shadow:
-    0 0 10px rgba(255, 107, 138, 0.6),
-    0 0 20px rgba(255, 107, 138, 0.5),
-    0 0 30px rgba(255, 107, 138, 0.4),
-    0 0 40px rgba(255, 107, 138, 0.3);
-}

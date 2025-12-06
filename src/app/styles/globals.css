@@ -1,3 +1,6 @@
+/* Fonts imported via <link> or next/font can be applied here via class or body */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+
 :root {
   --background-gradient: linear-gradient(
     135deg,
@@ -14,18 +17,21 @@
   --foreground: #171717;
   --primary-pink: #ff6b8a;
   --secondary-pink: #ffc0cb;
+  --font-cursive: "Caveat", cursive;
 }
 
 html,
 body {
   margin: 0;
-  padding: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 450px;
+  font-family: var(--font-cursive);
   color: var(--foreground);
   background: var(--background-gradient);
   background-size: 1800% 1800%;
   animation: gradientRotate 30s ease infinite;
-  max-width: 100vw;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,8 +41,14 @@ body {
   0% {
     background-position: 0% 50%;
   }
+  25% {
+    background-position: 50% 50%;
+  }
   50% {
     background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 50%;
   }
   100% {
     background-position: 0% 50%;
@@ -51,4 +63,15 @@ a {
 
 a:hover {
   color: var(--secondary-pink);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreen {
+  width: 100%;
+  height: 100%;
 }

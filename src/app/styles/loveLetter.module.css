@@ -1,5 +1,5 @@
 .loveLetterWrapper {
-  position: fixed; /* stays at bottom-right */
+  position: fixed;
   bottom: 40px;
   right: 40px;
   width: 160px;
@@ -16,7 +16,7 @@
   height: 100%;
   object-fit: contain;
   user-select: none;
-  pointer-events: none; /* button handles clicks */
+  pointer-events: none;
   animation: glowPulse 2s ease-in-out infinite;
 }
 
