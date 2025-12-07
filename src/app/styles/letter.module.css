@@ -77,7 +77,7 @@
 }
 
 .textContent p {
-  margin: 0;
+  margin: 5px;
 }
 
 .textContent p + p {
