@@ -1,7 +1,7 @@
 .masonryGrid {
   display: flex;
   width: 100%;
-  margin-left: -20px; /* compensate for gap */
+  margin-left: -20px;
 }
 
 .masonryColumn {
@@ -10,16 +10,49 @@
 }
 
 .imageCard {
-  margin-bottom: 20px; /* vertical gap */
+  margin-bottom: 20px;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible;
   cursor: pointer;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease; /* smooth return to original */
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .imageCard:hover {
-  box-shadow: 0 0 12px rgba(255, 107, 138, 0.35);
+  animation:
+    pulseGlow 2s infinite,
+    floatPulse 1.2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow:
+      0 0 25px rgba(255, 182, 193, 0.8),
+      0 0 50px rgba(255, 105, 180, 0.6),
+      0 0 100px rgba(255, 182, 193, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 35px rgba(255, 182, 193, 1),
+      0 0 70px rgba(255, 105, 180, 0.8),
+      0 0 120px rgba(255, 182, 193, 0.5);
+  }
+  100% {
+    box-shadow:
+      0 0 25px rgba(255, 182, 193, 0.8),
+      0 0 50px rgba(255, 105, 180, 0.6),
+      0 0 100px rgba(255, 182, 193, 0.4);
+  }
+}
+
+@keyframes floatPulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.04);
+  }
 }

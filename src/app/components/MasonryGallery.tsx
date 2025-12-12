@@ -14,11 +14,11 @@ interface Props {
 export default function MasonryGallery({ images }: Props) {
   const [shuffled, setShuffled] = useState<DriveImage[]>(images);
 
-  // Shuffle every 1 minute
+  // Shuffle every 5 minute
   useEffect(() => {
     const interval = setInterval(() => {
       setShuffled((prev) => [...prev].sort(() => Math.random() - 0.5));
-    }, 60000);
+    }, 300000);
 
     return () => clearInterval(interval);
   }, []);
