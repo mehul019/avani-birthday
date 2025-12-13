@@ -3,7 +3,25 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const HEARTS = ["❤️", "💛", "💚", "💙", "💜", "🧡", "💖", "💝", "💞", "💕"];
+const HEARTS = [
+  "❤️",
+  "💛",
+  "💚",
+  "💙",
+  "💜",
+  "🧡",
+  "💖",
+  "💝",
+  "💞",
+  "💕",
+  "🩷",
+  "🩵",
+  "💗",
+  "💓",
+  "💘",
+  "❣️",
+  "♥️",
+];
 
 interface Heart {
   id: string;

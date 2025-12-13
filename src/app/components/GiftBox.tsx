@@ -14,7 +14,7 @@ export default function GiftBox({ onOpened }: GiftBoxProps) {
   const [isClicked, setIsClicked] = useState(false);
 
   const startConfetti = () => {
-    const duration = 15000;
+    const duration = 13000;
     const animationEnd = Date.now() + duration;
 
     const defaultShapes: Shape[] = ["circle", "square", "star"];
