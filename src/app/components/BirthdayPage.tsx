@@ -37,8 +37,8 @@ export default function BirthdayPage({ banner, gallery }: BirthdayPageProps) {
         <>
           {musicStarted && <BackgroundMusic play={musicStarted} />}
           {banner && <Banner url={banner.url} alt="Birthday Banner" />}
-          <LoveLetter />
           <MasonryGallery images={gallery} />
+          <LoveLetter />
           <FloatingHearts />
         </>
       )}
