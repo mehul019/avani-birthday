@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+/** Array of heart emojis used to render floating hearts. */
 const HEARTS = [
   "❤️",
   "💛",
@@ -32,10 +33,15 @@ interface Heart {
   duration: number;
 }
 
+/**
+ * FloatingHearts – produces animated floating emoji hearts across the screen.
+ * Hearts are generated at an interval and older hearts are trimmed periodically.
+ */
 export default function FloatingHearts() {
   const [hearts, setHearts] = useState<Heart[]>([]);
 
   useEffect(() => {
+    // Add a new heart periodically with randomized position, size and duration.
     const interval = setInterval(() => {
       setHearts((hs) => [
         ...hs,
@@ -50,6 +56,7 @@ export default function FloatingHearts() {
       ]);
     }, 800);
 
+    // Keep the number of hearts in check to avoid memory growth.
     const cleanup = setInterval(() => {
       setHearts((hs) => hs.slice(-50));
     }, 1000);

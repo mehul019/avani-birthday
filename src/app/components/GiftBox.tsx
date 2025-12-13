@@ -6,17 +6,25 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "../styles/giftBox.module.css";
 
+/** Props for `GiftBox` */
 interface GiftBoxProps {
+  /** Callback when the gift is opened (used to reveal other UI) */
   onOpened: () => void;
 }
 
+/**
+ * GiftBox – clickable animated gift box that triggers a confetti celebration
+ * and calls `onOpened` when the click animation completes.
+ */
 export default function GiftBox({ onOpened }: GiftBoxProps) {
   const [isClicked, setIsClicked] = useState(false);
 
+  // Start various confetti bursts for a celebratory effect.
   const startConfetti = () => {
     const duration = 13000;
     const animationEnd = Date.now() + duration;
 
+    // Use multiple shapes for a rich confetti aesthetic.
     const defaultShapes: Shape[] = ["circle", "square", "star"];
 
     const defaults: Options = {
@@ -29,6 +37,7 @@ export default function GiftBox({ onOpened }: GiftBoxProps) {
       shapes: defaultShapes,
     };
 
+    // A palette of glow colors for the confetti bursts.
     const glowColors = [
       "#ff2d75",
       "#ffec00",
@@ -40,6 +49,7 @@ export default function GiftBox({ onOpened }: GiftBoxProps) {
       "#6c63ff",
     ];
 
+    // Small, frequent bursts for continuous motion.
     const fireBurst = () => {
       confetti({
         ...defaults,
@@ -52,6 +62,7 @@ export default function GiftBox({ onOpened }: GiftBoxProps) {
       });
     };
 
+    // Intermittent larger bursts to add excitement.
     const bigBurst = () => {
       confetti({
         ...defaults,
@@ -81,6 +92,7 @@ export default function GiftBox({ onOpened }: GiftBoxProps) {
     loop();
   };
 
+  // Motion variants used to animate the gift box (idle, animated, clicked).
   const variants: Variants = {
     initial: { scale: 1, rotate: 0, x: 0, y: 0 },
     anim: {

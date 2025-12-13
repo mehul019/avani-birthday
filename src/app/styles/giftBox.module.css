@@ -1,3 +1,4 @@
+/* Gift box container overlay */
 .giftContainer {
   position: fixed;
   top: 0;
@@ -11,6 +12,7 @@
   background: transparent;
 }
 
+/* Center wrapper to align the gift */
 .centerWrapper {
   display: flex;
   justify-content: center;
@@ -29,6 +31,7 @@
   max-height: 100%;
 }
 
+/* Glow pulse animation used to highlight the gift box */
 @keyframes glowPulse {
   0% {
     filter: drop-shadow(0 0 10px rgba(255, 107, 138, 0.6))

@@ -6,6 +6,9 @@ import { useState } from "react";
 import styles from "../styles/loveLetter.module.css";
 import Letter from "./Letter";
 
+/**
+ * LoveLetter – small clickable envelope button that opens the `Letter` modal.
+ */
 export default function LoveLetter() {
   const [isOpen, setIsOpen] = useState(false);
 

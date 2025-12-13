@@ -8,6 +8,10 @@ interface BannerProps {
   alt?: string;
 }
 
+/**
+ * Banner – renders a large, responsive Image used as the page banner.
+ * - Accepts an image `url` and optional `alt` text.
+ */
 export default function Banner({ url, alt = "Banner Image" }: BannerProps) {
   return (
     <div className={styles.bannerWrapper}>

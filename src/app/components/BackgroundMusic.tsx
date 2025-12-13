@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../styles/music.module.css";
 
+/** Simple SVG icon used to denote muted audio state. */
 const MutedIcon = ({ title = "Muted" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -24,6 +25,7 @@ const MutedIcon = ({ title = "Muted" }) => (
   </svg>
 );
 
+/** Simple SVG icon used to denote unmuted audio state. */
 const UnmutedIcon = ({ title = "Unmuted" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +46,16 @@ const UnmutedIcon = ({ title = "Unmuted" }) => (
   </svg>
 );
 
+/** Props for BackgroundMusic component */
 interface BackgroundMusicProps {
+  /** Whether audio playback should start (triggered by opening the gift) */
   play: boolean;
 }
 
+/**
+ * BackgroundMusic – client component that manages audio playback and mute state.
+ * It handles autoplay attempts, a gentle fade-in volume, and mute/unmute state.
+ */
 export default function BackgroundMusic({ play }: BackgroundMusicProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [muted, setMuted] = useState(false);
@@ -60,6 +68,7 @@ export default function BackgroundMusic({ play }: BackgroundMusicProps) {
     audio.volume = 0;
     audio.loop = true;
 
+    // Attempt autoplay; this may be blocked by the browser depending on user gesture settings.
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
@@ -67,6 +76,7 @@ export default function BackgroundMusic({ play }: BackgroundMusicProps) {
       });
     }
 
+    // Fade audio in slowly so it doesn't start abruptly when the gift opens.
     let vol = 0;
     const fade = setInterval(() => {
       if (!audio) return clearInterval(fade);

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
 
-/* ================= Overlay ================= */
+/* Overlay (modal background) */
 .overlay {
   position: fixed;
   inset: 0;
@@ -11,7 +11,7 @@
   z-index: 9999;
 }
 
-/* Container to hold both password box and paper */
+/* Container: holds both password dialog and the paper letter */
 .container {
   position: relative;
   width: 100%;
@@ -21,7 +21,7 @@
   align-items: center;
 }
 
-/* ================= Paper ================= */
+/* Paper (letter card) styles */
 .paper {
   position: relative;
   height: 80vh;
@@ -84,7 +84,7 @@
   margin-top: 30px;
 }
 
-/* ================= Close Buttons ================= */
+/* Close button styles */
 .closeBtnPassword,
 .closeBtnLetter {
   position: absolute;
@@ -145,14 +145,14 @@
   border-color: #ff4d85;
 }
 
-/* ================= Blur ================= */
+/* Blurred (locked) content state */
 .blurred {
   filter: blur(8px);
   pointer-events: none;
   user-select: none;
 }
 
-/* ================= Password Box ================= */
+/* Password input dialog */
 .passwordBox {
   position: absolute;
   z-index: 50;
@@ -184,7 +184,7 @@
   font-weight: 600;
 }
 
-/* ================= Input + Button ================= */
+/* Input and unlock button styles */
 .passwordInputWrapper {
   position: relative;
   width: 100%;
@@ -209,7 +209,7 @@
   box-shadow: 0 0 8px rgba(255, 77, 133, 0.5);
 }
 
-/* ================= Unlock Button ================= */
+/* Unlock button styling */
 .unlockBtn {
   position: absolute;
   right: 8px;
@@ -243,7 +243,7 @@
   box-shadow: 0 0 10px rgba(255, 77, 133, 0.5);
 }
 
-/* ================= Error Message ================= */
+/* Error message styles */
 .errorMsg {
   margin-top: 12px;
   font-size: 20px;

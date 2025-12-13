@@ -1,4 +1,9 @@
-/* Fonts imported via <link> or next/font can be applied here via class or body */
+/* Design tokens: CSS variables used across the project
+   --background-gradient: page background gradient
+   --foreground: main foreground text color
+   --primary-pink, --secondary-pink: primary color tokens for accents
+   --font-cursive: default handwritten font stack
+*/
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
 
 :root {
@@ -36,6 +41,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Page background subtle rotation animation used on root */
 @keyframes gradientRotate {
   0% {
     background-position: 0% 50%;

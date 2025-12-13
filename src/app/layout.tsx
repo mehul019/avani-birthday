@@ -10,6 +10,10 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
+/**
+ * RootLayout – default layout used by Next.js App Router.
+ * Wraps all pages inside <html> and <body> tags and imports global CSS.
+ */
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">

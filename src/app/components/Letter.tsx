@@ -7,11 +7,18 @@ interface LetterProps {
   onClose: () => void;
 }
 
+/**
+ * Letter – modal-like overlay containing a private love letter.
+ * A password is required to unlock the full letter content.
+ * Note: The password lives client-side for the demo and is NOT secure.
+ */
 export default function Letter({ onClose }: LetterProps) {
   const [unlocked, setUnlocked] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  // Demo password: stored client-side for this project. For a real app,
+  // authentication and secure storage would be required.
   const CORRECT_PASSWORD = "sunflower";
 
   const letter = [
@@ -40,7 +47,7 @@ export default function Letter({ onClose }: LetterProps) {
   return (
     <div className={styles.overlay}>
       <div className={styles.container}>
-        {/* PASSWORD BOX */}
+        {/* Password input section – shown when the letter is locked */}
         {!unlocked && (
           <div className={styles.passwordBox}>
             <button
@@ -77,7 +84,7 @@ export default function Letter({ onClose }: LetterProps) {
           </div>
         )}
 
-        {/* LETTER */}
+        {/* Letter content – shown blurred until the correct password unlocks it */}
         <div className={`${styles.paper} ${!unlocked ? styles.blurred : ""}`}>
           <button
             className={styles.closeBtnLetter}

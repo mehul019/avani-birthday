@@ -15,13 +15,17 @@ interface BirthdayPageProps {
   gallery: DriveImage[];
 }
 
+/**
+ * BirthdayPage – orchestrates the main interactive pieces of the app.
+ * Shows a `GiftBox` first; when opened, reveals music, banner, love letter and gallery.
+ */
 export default function BirthdayPage({ banner, gallery }: BirthdayPageProps) {
   const [giftOpened, setGiftOpened] = useState(false);
   const [musicStarted, setMusicStarted] = useState(false);
 
   const handleGiftOpened = (): void => {
     setGiftOpened(true);
-    // Start music after a slight delay to ensure animation looks smooth
+    // Use a brief delay to start audio after the gift open animation finishes.
     setTimeout(() => setMusicStarted(true), 100);
   };
 
@@ -33,9 +37,9 @@ export default function BirthdayPage({ banner, gallery }: BirthdayPageProps) {
         <>
           {musicStarted && <BackgroundMusic play={musicStarted} />}
           {banner && <Banner url={banner.url} alt="Birthday Banner" />}
-          <FloatingHearts />
           <LoveLetter />
           <MasonryGallery images={gallery} />
+          <FloatingHearts />
         </>
       )}
     </main>

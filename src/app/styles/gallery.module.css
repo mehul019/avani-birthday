@@ -1,3 +1,7 @@
+/* Font: Caveat for a handwritten aesthetic */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+
+/* Masonry layout: responsive grid */
 .masonryGrid {
   display: flex;
   width: 100%;
@@ -9,44 +13,59 @@
   background-clip: padding-box;
 }
 
+/* Image card base: border-radius, reset and transitions */
 .imageCard {
   margin-bottom: 20px;
   border-radius: 16px;
   overflow: visible;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+  /* Reset to default state */
+  transform: translateY(0) scale(1);
+  box-shadow: none;
+  animation: none;
+  filter: none;
+
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.5s,
+    opacity 0.5s;
 }
 
-.imageCard:hover {
+/* Auto mode (grayscale inactive images) */
+.gray {
+  filter: grayscale(100%);
+  opacity: 0.4;
+  pointer-events: none; /* disables hover for inactive images */
+}
+
+/* Hover animations (disabled in auto mode) */
+.imageCard:hover:not(.gray) {
   animation:
-    pulseGlow 2s infinite,
-    floatPulse 1.2s infinite;
+    floatPulse 1.2s infinite,
+    breatheGlow 5s infinite alternate;
+  animation-fill-mode: none; /* ensures proper reset when hover ends */
 }
 
-@keyframes pulseGlow {
-  0% {
-    box-shadow:
-      0 0 25px rgba(255, 182, 193, 0.8),
-      0 0 50px rgba(255, 105, 180, 0.6),
-      0 0 100px rgba(255, 182, 193, 0.4);
-  }
-  50% {
-    box-shadow:
-      0 0 35px rgba(255, 182, 193, 1),
-      0 0 70px rgba(255, 105, 180, 0.8),
-      0 0 120px rgba(255, 182, 193, 0.5);
-  }
-  100% {
-    box-shadow:
-      0 0 25px rgba(255, 182, 193, 0.8),
-      0 0 50px rgba(255, 105, 180, 0.6),
-      0 0 100px rgba(255, 182, 193, 0.4);
-  }
+/* Reset non-hovered images to baseline styles */
+.imageCard:not(:hover):not(.activeGlow) {
+  transform: translateY(0) scale(1);
+  box-shadow: none;
+  animation: none;
 }
 
+/* Active image glow when highlighted in Auto mode */
+.activeGlow {
+  animation:
+    floatPulse 1.2s infinite,
+    breatheGlow 5s infinite alternate;
+  /* When gray filter is applied globally for auto-mode, activeGlow reverts the filter. */
+  filter: none;
+  opacity: 1;
+}
+
+/* Floating pulse animation for images: used by .imageCard and .activeGlow to add motion */
 @keyframes floatPulse {
   0%,
   100% {
@@ -54,5 +73,108 @@
   }
   50% {
     transform: translateY(-3px) scale(1.04);
+  }
+}
+
+/* Breathing multi-color glow: used as a multi-color box-shadow animation for focus/active states */
+@keyframes breatheGlow {
+  0% {
+    box-shadow:
+      0 0 15px #ffb6c1,
+      0 0 30px #ff69b4,
+      0 0 50px #ff1493;
+  }
+  25% {
+    box-shadow:
+      0 0 20px #87cefa,
+      0 0 40px #1e90ff,
+      0 0 60px #00bfff;
+  }
+  50% {
+    box-shadow:
+      0 0 25px #98fb98,
+      0 0 50px #32cd32,
+      0 0 80px #228b22;
+  }
+  75% {
+    box-shadow:
+      0 0 20px #ffa07a,
+      0 0 40px #ff4500,
+      0 0 60px #ff6347;
+  }
+  100% {
+    box-shadow:
+      0 0 15px #ffb6c1,
+      0 0 30px #ff69b4,
+      0 0 50px #ff1493;
+  }
+}
+
+/* Love Flow toggle button */
+.loveFlowButton {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: 2px solid #ffb3c6;
+  background: #ffd6e0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  font-family: "Caveat", cursive;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff4d85;
+
+  /* smooth transitions */
+  transition:
+    background 0.2s ease,
+    border 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+
+  /* subtle gradient shimmer */
+  background-image: linear-gradient(120deg, #ffd6e0, #ffc0d0, #ffd6e0);
+  background-size: 200% 200%;
+  animation: shimmerGradient 4s ease-in-out infinite;
+}
+
+/* Hover effect for Love Flow button */
+.loveFlowButton:hover {
+  background: #ffc0d0;
+  border-color: #e60070;
+  box-shadow: 0 0 10px rgba(255, 77, 133, 0.5);
+  transform: scale(1.05);
+  color: #ff4d85;
+  animation-play-state: paused;
+}
+
+/* Active / toggled state */
+.loveFlowOn {
+  background: #ffc0d0;
+  border-color: #e60070;
+  box-shadow:
+    0 0 15px rgba(255, 77, 133, 0.8),
+    0 0 30px rgba(255, 182, 193, 0.6),
+    0 0 50px rgba(255, 105, 180, 0.4);
+  color: #ff4d85;
+  animation: shimmerGradient 4s ease-in-out infinite;
+}
+
+/* Shimmer gradient animation for Love Flow button */
+@keyframes shimmerGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
