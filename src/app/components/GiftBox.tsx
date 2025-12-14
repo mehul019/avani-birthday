@@ -8,7 +8,12 @@ import styles from "../styles/giftBox.module.css";
 
 /** Props for `GiftBox` */
 interface GiftBoxProps {
-  /** Callback when the gift is opened (used to reveal other UI) */
+  /**
+   * Callback when the gift is opened (used to reveal the celebratory UI).
+   * The `GiftBox` component is purely responsible for the animation and
+   * confetti; it does not implement audio unlock logic—this is handled in
+   * `BackgroundMusic` via a simple autoplay attempt when `musicStarted` is true.
+   */
   onOpened: () => void;
 }
 

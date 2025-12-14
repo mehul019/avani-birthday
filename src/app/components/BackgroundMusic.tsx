@@ -3,6 +3,19 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../styles/music.module.css";
 
+/**
+ * BackgroundMusic
+ *
+ * Description:
+ * - Simple client-side looping audio player for the birthday page.
+ * - Attempts to autoplay when `play` becomes true; in some browsers autoplay
+ *   is blocked until the user gestures on the page. This component attempts
+ *   playback and logs a warning if autoplay is blocked; it does not implement
+ *   any complex unlock logic or audio analysis.
+ * - Provides a mute/unmute button, a gentle fade-in on initial play, and
+ *   keeps audio looping in the background.
+ */
+
 /** Simple SVG icon used to denote muted audio state. */
 const MutedIcon = ({ title = "Muted" }) => (
   <svg
@@ -65,10 +78,14 @@ export default function BackgroundMusic({ play }: BackgroundMusicProps) {
     const audio = audioRef.current;
     if (!audio) return;
 
+    // Start muted (0) and gently fade in — this avoids abrupt sound when
+    // the gift opens and provides a smoother user experience.
     audio.volume = 0;
     audio.loop = true;
 
-    // Attempt autoplay; this may be blocked by the browser depending on user gesture settings.
+    // Attempt autoplay. Many browsers block autoplay if there is no user
+    // gesture, so we only attempt to play and log warnings if the play is
+    // rejected. There is no complex unlock logic implemented here.
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {

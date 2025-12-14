@@ -74,6 +74,10 @@ npm run lint
 - The password used to reveal the letter in the UI is kept client-side for this demo (see `Letter.tsx`). For any real app, replace this with server-verified authentication.
 - Images are fetched via Google Drive listing and mapped to a thumbnail and large image URL. If your Drive folder is private, you'll need an authenticated approach instead of a client-side API key.
 
+## Audio
+- Background music is played via `BackgroundMusic` and loops by default. It attempts to autoplay when the gift is opened; if your browser blocks autoplay, a user-gesture may be needed to start playback. There is no audio analysis or beat detection in the current implementation.
+- Floating hearts are decorative and spawn randomly; they do not react to music. If you need a future audio-reactive implementation, consider adding a shared `AudioContext` and an `AnalyserNode`, which must be created carefully (one `MediaElementAudioSourceNode` per HTMLMediaElement) to avoid DOM errors.
+
 ## License & Credits
 This project was created for a personal demo. Feel free to reuse or adapt it. It uses `framer-motion`, `canvas-confetti` and `react-masonry-css`.
 
