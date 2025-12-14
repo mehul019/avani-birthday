@@ -15,7 +15,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  reactCompiler: true,
+  // `reactCompiler` disabled because babel-plugin-react-compiler dev dependency
+  // was removed. Re-enable if you install the plugin again and intentionally
+  // want to use the React Compiler.
+  reactCompiler: false,
 };
 
 export default nextConfig;
