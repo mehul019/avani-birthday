@@ -157,18 +157,19 @@ export default function FloatingHearts() {
             top: h.y,
             fontSize: h.size,
             pointerEvents: "none",
-            textShadow: `0 0 6px ${h.glow}, 0 0 12px ${h.glow}`,
-            opacity: 0.5,
+            textShadow: `0 0 4px ${h.glow}, 0 0 8px ${h.glow}`,
+            opacity: 0.3,
             zIndex: 50,
           }}
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.9, opacity: 0 }}
           animate={{
-            scale: [1, 1.5, 1, 0], // pulse then shrink to vanish
-            opacity: [0.5, 0.8, 0.5, 0], // pulse then fade out
+            scale: [1, 1.35, 1, 0],
+            opacity: [0.25, 0.45, 0.15, 0],
           }}
           transition={{
             duration: h.duration,
-            ease: "easeInOut",
+            ease: "easeOut",
+            times: [0, 0.35, 0.65, 1],
           }}
         >
           {h.emoji}
