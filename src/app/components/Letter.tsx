@@ -46,6 +46,14 @@ export default function Letter({ onClose }: LetterProps) {
     }
   };
 
+  const onDownload = () => {
+    const fileUrl = "/Avani-birthday-letter-2025.pdf";
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "Avani-birthday-letter-2025.pdf";
+    link.click();
+  };
+
   return (
     <div className={styles.overlay}>
       <div className={styles.container}>
@@ -57,9 +65,7 @@ export default function Letter({ onClose }: LetterProps) {
               onClick={onClose}
               type="button"
             />
-
-            <h2>Enter Password 🌻</h2>
-
+            <h2 className={styles.enterPasswordText}>Enter Password 🌻</h2>
             <form
               className={styles.passwordInputWrapper}
               onSubmit={(e) => {
@@ -76,23 +82,43 @@ export default function Letter({ onClose }: LetterProps) {
                 }}
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
               />
-
               <button type="submit" className={styles.unlockBtn}>
                 ➼
               </button>
             </form>
-
             {error && <p className={styles.errorMsg}>{error}</p>}
           </div>
         )}
 
-        {/* Letter content – shown blurred until the correct password unlocks it */}
+        {/* Letter content */}
         <div className={`${styles.paper} ${!unlocked ? styles.blurred : ""}`}>
           <button
             className={styles.closeBtnLetter}
             onClick={onClose}
             type="button"
           />
+          <button
+            className={styles.downloadBtnLetter}
+            onClick={onDownload}
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ff4d85"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <title>Download PDF</title>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+          </button>
 
           <div className={styles.paperContent}>
             <div className={styles.textContent}>

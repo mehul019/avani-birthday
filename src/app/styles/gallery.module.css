@@ -1,5 +1,5 @@
-/* Font: Caveat for a handwritten aesthetic */
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+/* Font: dekko for a handwritten aesthetic */
+@import url("https://fonts.googleapis.com/css2?family=Dekko&display=swap");
 
 /* Masonry layout: responsive grid */
 .masonryGrid {
@@ -125,7 +125,7 @@
   justify-content: center;
   z-index: 9999;
 
-  font-family: "Caveat", cursive;
+  font-family: "Dekko", cursive;
   font-size: 18px;
   font-weight: 700;
   color: #ff4d85;

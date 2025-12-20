@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dekko&display=swap");
 
 /* Overlay (modal background) */
 .overlay {
@@ -24,8 +24,8 @@
 /* Paper (letter card) styles */
 .paper {
   position: relative;
-  height: 80vh;
-  aspect-ratio: 1.294 / 1; /* US Letter ratio */
+  height: 95vh;
+  aspect-ratio: 1 / 1.414;
   max-width: 90%;
   margin: 0 auto;
   background: url("/paper.jpg") no-repeat right center;
@@ -35,51 +35,60 @@
   overflow: hidden;
 }
 
-/* Left margin line with dots */
-.paper:before {
+/* Left margin lines with subtle red glow */
+.paper:after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
-  width: 36px;
-  border-right: 3px solid #d44147;
-  background-image: radial-gradient(#575450 6px, transparent 0);
-  background-repeat: repeat-y;
-  background-size: 30px 30px;
-  background-position: center 36px;
+  left: 75px;
+  width: 1px;
+  background-color: #b0b0b0;
+  box-shadow:
+    0 0 1px #d44147,
+    4px 0 0 #b0b0b0,
+    4px 0 1px #d44147;
+  pointer-events: none;
 }
 
-/* Paper content with ruled lines */
+/* Paper content area with horizontal ruled lines and scrollable text */
 .paperContent {
   position: absolute;
-  top: 30px;
+  top: 50px;
   right: 0;
-  bottom: 30px;
-  left: 40px;
-  background: linear-gradient(transparent, transparent 28px, #91d1d3 28px);
-  background-size: 30px 30px;
-  background-attachment: local; /* scroll with text */
+  bottom: 20px;
+  left: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 27px,
+    #b0b0b0 27px,
+    #b0b0b0 28px
+  );
+  background-size: 100% 30px;
+  background-attachment: local;
   overflow-y: auto;
-  padding: 0 20px;
+  padding: 15px 15px 15px 75px;
 }
 
-/* Handwriting text */
+/* Handwriting-style text within paper */
 .textContent {
   margin: 0;
-  font-family: "Caveat", "Monaco", cursive;
+  font-family: "Dekko", cursive;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 30px;
   color: mediumblue;
   white-space: pre-wrap;
   text-align: left;
 }
 
+/* Paragraph spacing inside handwriting content */
 .textContent p {
-  margin: 5px;
+  margin: 15px;
 }
 
+/* Additional spacing between consecutive paragraphs */
 .textContent p + p {
   margin-top: 30px;
 }
@@ -250,4 +259,49 @@
   color: #d00000;
   font-weight: 600;
   text-align: center;
+}
+
+/* Circular download button with hover icon effect */
+.downloadBtnLetter {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  background: #ffd6e0;
+  border: 2px solid #ffb3c6;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition:
+    background 0.2s ease,
+    border 0.2s ease;
+}
+
+/* Hover effect for download button */
+.downloadBtnLetter:hover {
+  background: #ffc0d0;
+  border-color: #ff4d85;
+}
+
+/* SVG icon inside download button */
+.downloadBtnLetter svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+/* Only SVG grows on hover */
+.downloadBtnLetter:hover svg {
+  transform: scale(1.2);
+}
+
+/* Text colour on enter password text */
+.enterPasswordText {
+  color: #ff4d85;
 }
